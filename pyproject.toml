@@ -1,0 +1,15 @@
+[tool.poetry]
+name = "flask-project"
+version = "0.1.0"
+description = ""
+authors = ["solovyova-1996 <shatdar@yandex.ru>"]
+readme = "README.md"
+packages = [{include = "flask_project"}]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
