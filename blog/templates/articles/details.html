@@ -1,0 +1,18 @@
+{% extends 'base.html'%}
+{% block title %}
+{{ super() }}
+Article details
+
+{% endblock %}
+{% block body %}
+<div class="row">
+    <div class="col">
+        <h1>Название: {{ article.title }}</h1>
+        <h4>Дата выпуска: {{ article.date }}</h4>
+        <h5>Текст: </h5>
+        <p>{{article.text}}</p>
+        <a href="{{url_for('user.get_user',pk=article.author)}}" class="btn btn-primary">Автор:{{users[article.author].name}}</a>
+    </div>
+</div>
+<h1>{{ user_name }}</h1>
+{% endblock %}

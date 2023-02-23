@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block title %}
+{{ super() }}
+Articles
+{% endblock %}
+{% block body %}
+<div class="row">
+    <div class="col">
+        <h1>Статьи</h1>
+        {% for id, article in articles.items() %}
+        <div class="card w-75 mb-3">
+            <div class="card-body">
+                <h5 class="card-title">{{ article.title }}</h5>
+                <p class="card-text">{{ article.text[:30] }}.....</p>
+                <a href="{{url_for('article.get_article',id=id)}}" class="btn btn-primary">Читать</a>
+            </div>
+        </div>
+        {% endfor%}
+
+    </div>
+</div>
+{% endblock %}

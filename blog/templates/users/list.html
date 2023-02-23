@@ -1,0 +1,23 @@
+{% extends 'base.html'%}
+{% block title %}
+{{ super() }}
+User list
+{% endblock %}
+{% block body %}
+
+<div class="row">
+    <div class="col">
+        <h1>Авторы</h1>
+        {% for user_id,user in users.items() %}
+        <div class="card w-75 mb-3">
+            <div class="card-body">
+                <h5 class="card-title">{{ users[user_id].name }}</h5>
+                <p class="card-text">{{ users[user_id].description[:20] }}.....</p>
+                <a href="{{url_for('user.get_user',pk=user_id)}}" class="btn btn-primary">Перейти</a>
+            </div>
+        </div>
+        {% endfor%}
+
+    </div>
+</div>
+{% endblock %}
