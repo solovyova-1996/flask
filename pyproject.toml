@@ -8,6 +8,8 @@ packages = [{include = "flask_project"}]
 
 [tool.poetry.dependencies]
 python = "^3.10"
+dotenv = "^0.0.5"
+Flask-Login = "^0.6.2"
 
 
 [build-system]

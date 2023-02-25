@@ -8,9 +8,22 @@ User details
 <div class="row">
     <div class="col">
         <h1>Имя: {{ user.name }}</h1>
-        <h3>Дата рождения: {{ user.birthday }}</h3>
-        <h3>Характер: </h3>
-        <p>{{user.description}}</p>
+        <p>email: {{user.email}}</p>
+    </div>
+</div>
+<div class="row">
+    <div class="col">
+        <h1>Статьи</h1>
+        {% for article in articles %}
+        <div class="card w-75 mb-3">
+            <div class="card-body">
+                <h5 class="card-title">{{ article.title }}</h5>
+                <p class="card-text">{{ article.text[:30] }}.....</p>
+                <a href="{{url_for('article.get_article',id=article.id)}}" class="btn btn-primary">Читать</a>
+            </div>
+        </div>
+        {% endfor%}
+
     </div>
 </div>
 <h1>{{ user_name }}</h1>
