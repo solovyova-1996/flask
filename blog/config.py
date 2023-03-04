@@ -9,6 +9,7 @@ class Config:
     SECRET_KEY = environ.get('SECRET_KEY')
     STATIC_FOLDER = 'static'
     TEMPLATES_FOLDER = 'templates'
+    WTF_CSRF_ENABLED = True
 
 
 class ProdConfig(Config):
