@@ -3,15 +3,16 @@ from blog.user.views import user
 from blog.articles.views import article
 from blog.auth.views import auth,login_manager
 from blog.models.database import db
-
-
+from blog import config
+from flask_migrate import Migrate
 
 def crate_app() -> Flask:
     app = Flask(__name__)
-    app.config.from_object('config.DevConfig')
+    app.config.from_object(config.DevConfig)
     db.init_app(app)
     login_manager.init_app(app)
     register_blueprinnts(app)
+    migrate = Migrate(app,db,compare_type=True)
     return app
 
 
