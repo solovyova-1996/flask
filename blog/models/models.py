@@ -3,10 +3,11 @@ from blog.models.database import db
 from datetime import datetime
 
 
-class User(UserMixin,db.Model):
+class User(UserMixin, db.Model):
     __tablename__ = 'users'
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(255))
+    first_name = db.Column(db.String(255))
+    last_name = db.Column(db.String(255))
     email = db.Column(db.String(255), unique=True)
     age = db.Column(db.Integer())
     password = db.Column(db.String(255))
