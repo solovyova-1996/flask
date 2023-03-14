@@ -1,6 +1,5 @@
 from werkzeug.security import generate_password_hash
-from blog.models import Article
-
+from blog.models import Article, Tag
 from blog.app import crate_app, db
 
 app = crate_app()
@@ -48,6 +47,16 @@ def create_articles():
                         )
     db.session.add_all([article_1, article_2, article_3])
     db.session.commit()
+
+
+@app.cli.command("create-tags")
+def create_tags():
+    from blog.models import Tag
+    for name in ["flask", "django", "python", "sqlalchemy", "news"]:
+        tag = Tag(name=name)
+        db.session.add(tag)
+    db.session.commit()
+    print("created tags")
 
 
 if __name__ == '__main__':

@@ -11,7 +11,17 @@ Article details
         <h4>Дата выпуска: {{ article.date }}</h4>
         <h5>Текст: </h5>
         <p>{{article.text}}</p>
-        <a href="{{url_for('user.get_user',pk=article.author)}}" class="btn btn-primary">Автор: {{user.first_name}} {{ user.last_name if user.last_name != None else ''}}</a>
+        {% if article.tags|length > 0 %}
+        <h5>Теги: </h5>
+        <ul>
+            {% for tag in article.tags %}
+            <li>{{ tag.name }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+
+        <a href="{{url_for('user.get_user',pk=article.author)}}" class="btn btn-primary">Автор: {{user.first_name}} {{
+            user.last_name if user.last_name != None else ''}}</a>
     </div>
 </div>
 <h1>{{ user_name }}</h1>

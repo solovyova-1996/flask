@@ -11,9 +11,23 @@
                     <a class="nav-link active" aria-current="page" href="{{url_for('user.user_list')}}">Авторы</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page"
-                       href="{{url_for('article.articles_list')}}">Статьи</a>
+
+                    <div class="row row-cols-auto">
+                        <div class="col">
+                            <a class="nav-link active" aria-current="page"
+                               href="{{url_for('article.articles_list')}}">Статьи</a>
+                        </div>
+                        <div class="col">
+                            {% if current_user.is_authenticated %}
+
+                            <a class="btn btn-primary" aria-current="page" href="{{url_for('article.create')}}">Создать
+                                статью</a>
+
+                            {% endif %}
+                        </div>
+                    </div>
                 </li>
+
                 {% if current_user.is_authenticated %}
                 <li class="nav-item">
                     <a class="btn btn-dark" aria-current="page" href="{{url_for('auth.logout')}}">Выйти</a>
