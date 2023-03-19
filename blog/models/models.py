@@ -20,12 +20,17 @@ class User(UserMixin, db.Model):
     age = db.Column(db.Integer())
     password = db.Column(db.String(255))
 
+    def __str__(self):
+        return self.first_name, self.last_name
+
 
 class Tag(db.Model):
     __tablename__ = 'tags'
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String, default='')
     articles = db.relationship("Article", secondary=article_tag_association, back_populates="tags", )
+    def __str__(self):
+        return self.name
 
 
 class Article(db.Model):
@@ -36,3 +41,6 @@ class Article(db.Model):
     text = db.Column(db.Text())
     date = db.Column(db.Date(), default=datetime.now().date())
     author = db.Column(db.Integer(), db.ForeignKey("users.id", ondelete="cascade"), nullable=False)
+
+    def __str__(self):
+        return self.title

@@ -38,7 +38,7 @@ def register():
         else:
             current_app.logger.info(f"Создан пользователь {user}")
             login_user(user)
-            return redirect(url_for('user.user_list'))
+            return redirect(url_for('users.user_list'))
     return render_template('auth/register.html', form=form, error=error)
 
 
@@ -54,14 +54,14 @@ def login():
     if not user or not check_password_hash(user.password, form.password.data):
         return render_template("auth/login.html", form=form, error=f"no user {email!r} found")
     login_user(user)
-    return redirect(url_for('user.user_list'))
+    return redirect(url_for('users.user_list'))
 
 
 @auth.route('/logout')
 @login_required
 def logout():
     logout_user()
-    return redirect(url_for('user.user_list'))
+    return redirect(url_for('users.user_list'))
 
 
 @login_manager.user_loader

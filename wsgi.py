@@ -1,8 +1,16 @@
+from flask_admin import Admin
 from werkzeug.security import generate_password_hash
-from blog.models import Article, Tag
+
+from blog.admin.admin import TgAdminView, ArticleAdminView, UserAdminView, MyAdminIndexView
+from blog.models import Article, models
 from blog.app import crate_app, db
 
 app = crate_app()
+admin = Admin(app=app, name="Blog Admin",index_view=MyAdminIndexView(), template_mode="bootstrap4")
+
+admin.add_view(TgAdminView(models.Tag, db.session, category="Models"))
+admin.add_view(UserAdminView(models.User, db.session, category="Models"))
+admin.add_view(ArticleAdminView(models.Article, db.session, category="Models"))
 
 
 @app.cli.command('init-db')

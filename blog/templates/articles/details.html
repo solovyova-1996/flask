@@ -20,7 +20,7 @@ Article details
         </ul>
         {% endif %}
 
-        <a href="{{url_for('user.get_user',pk=article.author)}}" class="btn btn-primary">Автор: {{user.first_name}} {{
+        <a href="{{url_for('users.get_user',pk=article.author)}}" class="btn btn-primary">Автор: {{user.first_name}} {{
             user.last_name if user.last_name != None else ''}}</a>
     </div>
 </div>
