@@ -6,7 +6,7 @@ from blog.models.database import db
 from flask_login import login_required, current_user
 from blog.forms import CreateArticleForm
 
-article = Blueprint('article', __name__, url_prefix="/articles", static_folder="../static")
+article = Blueprint('art', __name__, url_prefix="/articles", static_folder="../static")
 
 
 @article.route('/')
@@ -44,5 +44,5 @@ def create_article():
             current_app.logger.exception("Could not create a new article!")
             error = "Could not create article!"
         else:
-            return redirect(url_for("article.get_article", id=article.id))
+            return redirect(url_for("articles.get_article", id=article.id))
     return render_template("articles/create.html", form=form, error=error)
