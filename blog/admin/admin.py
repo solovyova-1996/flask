@@ -6,8 +6,8 @@ from werkzeug.utils import redirect
 
 
 class CustomView(ModelView):
-    def is_is_accessible(self):
-        return current_user.is_authenticated and current_user.is_staff
+    def is_accessible(self):
+        return current_user.is_authenticated
 
     def inaccessible_callback(self, name, **kwargs):
         return redirect(url_for('auth.login'))
@@ -16,9 +16,8 @@ class CustomView(ModelView):
 class MyAdminIndexView(AdminIndexView):
     @expose("/")
     def index(self):
-        if not (current_user.is_authenticated and current_user.is_staff):
-            return redirect(url_for("auth_app.login"))
-
+        if not (current_user.is_authenticated):
+            return redirect(url_for("auth.login"))
         return super(MyAdminIndexView, self).index()
 
 
