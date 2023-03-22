@@ -6,7 +6,7 @@ from blog.models.database import db
 from flask_login import login_required, current_user
 from blog.forms import CreateArticleForm
 
-article = Blueprint('art', __name__, url_prefix="/articles", static_folder="../static")
+article = Blueprint('articles', __name__, url_prefix="/articles", static_folder="../static")
 
 
 @article.route('/')

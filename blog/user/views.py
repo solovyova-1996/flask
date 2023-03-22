@@ -2,7 +2,7 @@ from flask import Blueprint, render_template, redirect
 from werkzeug.exceptions import NotFound
 from blog.models import User, Article
 
-user = Blueprint('us', __name__, url_prefix="/users", static_folder="../static")
+user = Blueprint('users', __name__, url_prefix="/users", static_folder="../static")
 
 
 @user.route('/')
