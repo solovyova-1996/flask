@@ -1,9 +1,7 @@
 from flask_admin import Admin
-from flask_combo_jsonapi import Api
 from werkzeug.security import generate_password_hash
-from apispec import APISpec
 from blog.admin.admin import TgAdminView, ArticleAdminView, UserAdminView, MyAdminIndexView
-from blog.api import init_api, create_api_spec_plugin
+from blog.api import init_api
 from blog.models import Article, models
 from blog.app import crate_app, db
 
@@ -14,17 +12,8 @@ admin = Admin(app=app, name="Blog Admin",index_view=MyAdminIndexView(), template
 admin.add_view(TgAdminView(models.Tag, db.session, category="Models"))
 admin.add_view(UserAdminView(models.User, db.session, category="Models"))
 admin.add_view(ArticleAdminView(models.Article, db.session, category="Models"))
-# api = Api(app)
-# api.plugins = [
-#     APISpec(
-#         app=app,
-#         tags={
-#             'Tag': 'Tag API',
-#         }
-#     ),
-# ]
+
 api =init_api(app)
-api.plugins = [create_api_spec_plugin(app)]
 
 @app.cli.command('init-db')
 def init_db():
