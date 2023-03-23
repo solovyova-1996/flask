@@ -18,7 +18,6 @@ class ProdConfig(Config):
     TESTING = False
     DATABASE_URI = environ.get('PROD_DATABASE_URI')
 
-
 class DevConfig(Config):
     FLASK_ENV = 'development'
     TESTING = True
@@ -26,3 +25,8 @@ class DevConfig(Config):
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     SQLALCHEMY_DATABASE_URI = environ.get('SQLALCHEMY_DATABASE_URI')
     FLASK_ADMIN_SWATCH = 'lux'
+    OPENAPI_URL_PREFIX = '/api/docs'
+    OPENAPI_VERSION = '3.0.0'
+    OPENAPI_SWAGGER_UI_PATH = '/'
+    OPENAPI_SWAGGER_UI_VERSION = '3.51.1'
+

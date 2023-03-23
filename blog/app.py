@@ -1,4 +1,6 @@
 from flask import Flask
+
+from blog.api import init_api, blueprint
 from blog.user.views import user
 from blog.articles.views import article
 from blog.auth.views import auth, login_manager
@@ -17,6 +19,7 @@ def crate_app() -> Flask:
 
 def register_dop(app):
     db.init_app(app)
+    # api = init_api(app)
     login_manager.init_app(app)
     migrate.init_app(app, db, compare_type=True)
 
@@ -25,3 +28,4 @@ def register_blueprinnts(app: Flask):
     app.register_blueprint(user, name="users")
     app.register_blueprint(article, name="articles")
     app.register_blueprint(auth)
+    app.register_blueprint(blueprint)
