@@ -1,3 +1,4 @@
+import requests
 from flask import Blueprint, render_template, request, current_app, redirect, url_for
 from sqlalchemy.exc import IntegrityError
 
@@ -6,14 +7,21 @@ from blog.models.database import db
 from flask_login import login_required, current_user
 from blog.forms import CreateArticleForm
 
+host = "127.0.0.1"
+port = "5000"
 article = Blueprint('articles', __name__, url_prefix="/articles", static_folder="../static")
 
 
 @article.route('/')
 @login_required
 def articles_list():
+    response = requests.get(f"http://{host}:{port}/api/articles/event_get_count/").json()
+    try:
+        count = response['count']
+    except KeyError:
+        count = 0
     articles = Article.query.all()
-    return render_template("articles/list.html", articles=articles, user=current_user)
+    return render_template("articles/list.html", articles=articles, user=current_user, count=count)
 
 
 @article.route("<int:id>")
