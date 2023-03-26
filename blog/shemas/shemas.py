@@ -41,7 +41,7 @@ class ArticleShema(Schema):
     author = Relationship(
         nested="UserShema",
         attribute="author",
-        related_view="article_list",
+        related_view="user_detail",
         related_view_kwargs={"id": "<id>"},
         schema="UserShema",
         type_="user",
@@ -50,7 +50,7 @@ class ArticleShema(Schema):
     tags = Relationship(
         nested="TagShema",
         attribute="tags",
-        related_view="tag_list",
+        related_view="tag_detail",
         related_view_kwargs={"id": "<id>"},
         schema="TagShema",
         type_="tag",
