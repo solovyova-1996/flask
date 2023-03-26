@@ -40,7 +40,7 @@ class ArticleShema(Schema):
     date = fields.DateTime(allow_none=False)
     author = Relationship(
         nested="UserShema",
-        attribute="user",
+        attribute="author",
         related_view="user_list",
         related_view_kwargs={"id": "<id>"},
         schema="UserShema",

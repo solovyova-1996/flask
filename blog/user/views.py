@@ -18,7 +18,7 @@ def get_user(pk: int):
     try:
         user = User.query.filter_by(id=pk).one_or_none()
         articles = Article.query.filter_by(author=user.id)
-        response = requests.get(f"http://127.0.0.1:5000/api/users/{pk}/event_get_article_count/").json()
+        response = requests.get(f"https://flask-gb-cvrk.onrender.com/api/users/{pk}/event_get_article_count/").json()
         try:
             count = response['count']
         except KeyError:
