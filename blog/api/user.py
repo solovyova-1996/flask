@@ -24,7 +24,7 @@ class UserDetail(ResourceDetail):
     events = UserDetailEvents
     schema = UserShema
     data_layer = {
-        "permission_get": [UserPermission],
+        # "permission_get": [UserPermission],
         'session': db.session,
         'model': User
     }
