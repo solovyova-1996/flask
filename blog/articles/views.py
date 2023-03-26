@@ -15,13 +15,13 @@ article = Blueprint('articles', __name__, url_prefix="/articles", static_folder=
 @article.route('/')
 @login_required
 def articles_list():
-    response = requests.get(f"http://{host}:{port}/api/articles/event_get_count/").json()
-    try:
-        count = response['count']
-    except KeyError:
-        count = 0
+    # response = requests.get(f"http://{host}:{port}/api/articles/event_get_count/").json()
+    # try:
+    #     count = response['count']
+    # except KeyError:
+    #     count = 0
     articles = Article.query.all()
-    return render_template("articles/list.html", articles=articles, user=current_user, count=count)
+    return render_template("articles/list.html", articles=articles, user=current_user)
 
 
 @article.route("<int:id>")

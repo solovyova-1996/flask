@@ -18,11 +18,11 @@ def get_user(pk: int):
     try:
         user = User.query.filter_by(id=pk).one_or_none()
         articles = Article.query.filter_by(author=user.id)
-        response = requests.get(f"https://flask-gb-cvrk.onrender.com/api/users/{pk}/event_get_article_count/").json()
-        try:
-            count = response['count']
-        except KeyError:
-            count = 0
+        # response = requests.get(f"https://flask-gb-cvrk.onrender.com/api/users/{pk}/event_get_article_count/").json()
+        # try:
+        #     count = response['count']
+        # except KeyError:
+        #     count = 0
     except KeyError:
         return redirect("/users/")
-    return render_template('users/details.html', user=user, articles=articles,count = count)
+    return render_template('users/details.html', user=user, articles=articles)
